@@ -1,9 +1,0 @@
-{% for loopback in loopback_interfaces %}
-interface loopback{{ loopback.loopback_id }}
-  {% if inventory_hostname != 'bg-router' %}
-  ip address {{ loopback.loopback_ip }}
-  {% else %}
-  ip address {{ loopback.loopback_ip}} {{ loopback.loopback_mask }}
-  {% endif %}
-  no shutdown
-{% endfor %}

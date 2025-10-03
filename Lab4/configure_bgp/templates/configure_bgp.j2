@@ -1,8 +1,0 @@
-{% for bgp in bgp_config %}
-router bgp {{ bgp.bgp_process_id }}
-  {% if inventory_hostname == 'bg-router' %}
-  bgp router-id {{ bgp.bgp_router_id }}
-  {% else %}
-  router-id {{ bgp.bgp_router_id }}
-  {% endif %}
-{% endfor %}

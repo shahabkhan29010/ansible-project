@@ -1,5 +1,0 @@
-{% for svi in svi_interfaces%}
-interface vlan{{ svi.svi_vlan_id }}
-  ip address {{ svi.svi_ip_address }}
-  no shutdown
-{% endfor %}
