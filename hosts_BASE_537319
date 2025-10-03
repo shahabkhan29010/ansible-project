@@ -37,11 +37,7 @@ DC01-Leaf01
 DC01-Leaf02
 
 [arista:vars]
-<<<<<<< HEAD
-#ansible_python_interpreter=/home/admin/mylab/bin/python3
-=======
-ansible_python_interpreter=/home/admin/mylab/bin/python3
->>>>>>> 21844dbf1711d558a9cd8b59ae85092fac14b8af
+ansible_python_interpreter=/home/knzadmin/mylab/bin/python3
 ansible_user=admin
 ansible_password=arista
 ansible_connection=network_cli
@@ -65,13 +61,9 @@ DC02-Leaf01
 DC02-Leaf02
 
 [dellemc:vars]
-<<<<<<< HEAD
-#ansible_python_interpreter=/home/admin/mylab/bin/python3
-=======
-ansible_python_interpreter=/home/admin/mylab/bin/python3
->>>>>>> 21844dbf1711d558a9cd8b59ae85092fac14b8af
+ansible_python_interpreter=/home/knzadmin/mylab/bin/python3
 ansible_user=admin
-ansible_password=Dell@Sonic
+ansible_password=1KNZLab!
 ansible_connection=network_cli
 ansible_network_os=dellemc.enterprise_sonic.sonic
 ansible_port=22
