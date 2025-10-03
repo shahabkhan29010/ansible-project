@@ -1,8 +1,0 @@
-#SPDX-License-Identifier: MIT-0
----
-# vars file for access_ports
-access_ports:
-  - port_name: Ethernet1/3
-    vlan_id: 10
-  - port_name: Ethernet1/4
-    vlan_id: 20
