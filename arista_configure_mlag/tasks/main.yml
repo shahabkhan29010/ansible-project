@@ -4,9 +4,9 @@
 - name: Generate scripts to configure MLAG on Arista Spine Switches
   template:
     src: arista_configure_mlag.j2
-    dest: "/home/knzadmin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
+    dest: "/home/network-admin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
 
 - name: Push MLAG configuration on Arista Spine Switches
   arista.eos.eos_config:
-    src: "/home/knzadmin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
+    src: "/home/network-admin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
     save_when: modified

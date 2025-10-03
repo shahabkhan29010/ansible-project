@@ -4,9 +4,9 @@
 - name: Generate scripts to configure access ports in DellEMC Leaf Switches
   template:
     src: dell_configure_access_port.j2
-    dest: "/home/knzadmin/mylab/dell_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
 
 - name: Push configuration to configure access ports in DellEMC Leaf Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
+    src: "/home/network-admin/mylab/dell_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
     save: yes

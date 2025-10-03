@@ -4,9 +4,9 @@
 - name: Generate scripts to configure MCLAG on DellEMC SoNIC Spine Switches
   template:
     src: dell_configure_mclag.j2
-    dest: "/home/knzadmin/mylab/dell_configure_mclag/files/{{ inventory_hostname }}_mclag.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_mclag/files/{{ inventory_hostname }}_mclag.cfg"
 
 - name: Push configuration to configure MCLAG on DellEMC SoNIC Spine Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_mclag/files/{{ inventory_hostname }}_mclag.cfg"
+    src: "/home/network-admin/mylab/dell_configure_mclag/files/{{ inventory_hostname }}_mclag.cfg"
     save: yes

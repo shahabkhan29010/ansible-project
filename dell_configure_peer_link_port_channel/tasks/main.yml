@@ -4,9 +4,9 @@
 - name: Generate configuration to configure peer-link port-channel on DellEMC SoNIC Spine Switches
   template:
     src: dell_configure_peer_link_port_channel.j2
-    dest: "/home/knzadmin/mylab/dell_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peerlink.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peerlink.cfg"
 
 - name: Push configuration to configure peer-link port-channel on DellEMC SoNIC Spine Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peerlink.cfg"
+    src: "/home/network-admin/mylab/dell_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peerlink.cfg"
     save: yes

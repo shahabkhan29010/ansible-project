@@ -1,9 +1,0 @@
-{% for neighbor in ospf_neighbors %}
-{% if inventory_hostname != 'bg-router' %}
-interface {{ neighbor.ospf_interface }}
-  ip router ospf {{ neighbor.ospf_process_id }} area {{ neighbor.ospf_area_id }}
-{% else %}
-interface {{ neighbor.ospf_interface }}
-  ip ospf {{ neighbor.ospf_process_id }} area {{ neighbor.ospf_area_id }}
-{% endif %}
-{% endfor %}

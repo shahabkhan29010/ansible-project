@@ -4,9 +4,9 @@
 - name: Generate scripts to configure MLAG Port-channel on Arista Spine Switches
   template:
     src: arista_configure_mlag_port_channel.j2
-    dest: "/home/knzadmin/mylab/arista_configure_mlag_port_channel/files/{{ inventory_hostname }}_mlag_po.cfg"
+    dest: "/home/network-admin/mylab/arista_configure_mlag_port_channel/files/{{ inventory_hostname }}_mlag_po.cfg"
 
 - name: Push scripts to configure MLAG Port-Channel on Arista Spine Switches
   arista.eos.eos_config:
-    src: "/home/knzadmin/mylab/arista_configure_mlag_port_channel/files/{{ inventory_hostname }}_mlag_po.cfg"
+    src: "/home/network-admin/mylab/arista_configure_mlag_port_channel/files/{{ inventory_hostname }}_mlag_po.cfg"
     save_when: modified

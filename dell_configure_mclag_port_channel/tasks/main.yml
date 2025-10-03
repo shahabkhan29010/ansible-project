@@ -4,9 +4,9 @@
 - name: Generate scripts to configure MCLAG PortChannel on DellEMC SoNIC Spine Switches
   template:
     src: dell_configure_mclag_port_channel.j2
-    dest: "/home/knzadmin/mylab/dell_configure_mclag_port_channel/files/{{ inventory_hostname }}_mclag_po.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_mclag_port_channel/files/{{ inventory_hostname }}_mclag_po.cfg"
   
 - name: Push configuration to configure MCLAG PortChannel on DellEMC SoNIC Spine Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_mclag_port_channel/files/{{ inventory_hostname }}_mclag_po.cfg"
+    src: "/home/network-admin/mylab/dell_configure_mclag_port_channel/files/{{ inventory_hostname }}_mclag_po.cfg"
     save: yes

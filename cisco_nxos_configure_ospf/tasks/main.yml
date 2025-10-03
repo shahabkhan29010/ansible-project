@@ -4,9 +4,9 @@
 - name: Generate script to configure ospf in Nexus Switches
   template:
     src: cisco_nxos_configure_ospf.j2
-    dest: "/home/knzadmin/mylab/cisco_nxos_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+    dest: "/home/network-admin/mylab/cisco_nxos_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
 
 - name: Push configuration to configure ospf in Nexus Switches
   cisco.nxos.nxos_config:
-    src: "/home/knzadmin/mylab/cisco_nxos_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+    src: "/home/network-admin/mylab/cisco_nxos_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
     save_when: modified

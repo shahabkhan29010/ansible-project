@@ -4,9 +4,9 @@
 - name: Generate script to configure loopback interface in Arista Spine Switches
   template:
     src: arista_configure_loopback.j2
-    dest: "/home/knzadmin/mylab/arista_configure_loopback/files/{{ inventory_hostname }}_loopback.cfg"
+    dest: "/home/network-admin/mylab/arista_configure_loopback/files/{{ inventory_hostname }}_loopback.cfg"
 
 - name: Push configuration to configure loopback interface in Arista Spine Switches
   arista.eos.eos_config:
-    src: "/home/knzadmin/mylab/arista_configure_loopback/files/{{ inventory_hostname }}_loopback.cfg"
+    src: "/home/network-admin/mylab/arista_configure_loopback/files/{{ inventory_hostname }}_loopback.cfg"
     save_when: modified

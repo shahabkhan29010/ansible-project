@@ -4,9 +4,9 @@
 - name: Generate scripts to configure OSPF on DellEMC SoNIC Spine Switches
   template:
     src: dell_configure_ospf.j2
-    dest: "/home/knzadmin/mylab/dell_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
 
 - name: Push configuration to configure OSPF on DellEMC SoNIC Spine Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+    src: "/home/network-admin/mylab/dell_configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
     save: yes

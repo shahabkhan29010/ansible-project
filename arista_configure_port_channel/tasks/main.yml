@@ -4,9 +4,9 @@
 - name: Generate scripts to configure port-channels between Arista Leaf & Spine Switches
   template:
     src: arista_configure_port_channel.j2
-    dest: "/home/knzadmin/mylab/arista_configure_port_channel/files/{{ inventory_hostname }}_port_channel.cfg"
+    dest: "/home/network-admin/mylab/arista_configure_port_channel/files/{{ inventory_hostname }}_port_channel.cfg"
 
 - name: Push configuration to configure port-channels between Arista Leaf & Spine Switches
   arista.eos.eos_config:
-    src: "/home/knzadmin/mylab/arista_configure_port_channel/files/{{ inventory_hostname }}_port_channel.cfg"
+    src: "/home/network-admin/mylab/arista_configure_port_channel/files/{{ inventory_hostname }}_port_channel.cfg"
     save_when: modified

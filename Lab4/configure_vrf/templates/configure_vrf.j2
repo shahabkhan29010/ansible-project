@@ -1,7 +1,0 @@
-{% for vrf in vrfs %}
-vrf context {{ vrf.vrf_name }}
-interface {{ vrf.vrf_member_port }}
-  no switchport
-  vrf member {{ vrf.vrf_name }}
-copy running-config startup-config
-{% endfor %}

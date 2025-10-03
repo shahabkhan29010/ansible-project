@@ -4,9 +4,9 @@
 - name: Generate script to configure L3 interface in Arista Spine Switches
   template:
     src: arista_configure_l3_interface.j2
-    dest: "/home/knzadmin/mylab/arista_configure_l3_interface/files/{{ inventory_hostname }}_l3_interface.cfg"
+    dest: "/home/network-admin/mylab/arista_configure_l3_interface/files/{{ inventory_hostname }}_l3_interface.cfg"
 
 - name: Push configuration to configure L3 interface in Arista Spine Switches
   arista.eos.eos_config:
-    src: "/home/knzadmin/mylab/arista_configure_l3_interface/files/{{ inventory_hostname }}_l3_interface.cfg"
+    src: "/home/network-admin/mylab/arista_configure_l3_interface/files/{{ inventory_hostname }}_l3_interface.cfg"
     save_when: modified

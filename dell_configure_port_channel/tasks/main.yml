@@ -4,9 +4,9 @@
 - name: Generate scripts to configure port-channel on DellEMC SoNIC Leaf Switches
   template:
     src: dell_configure_port_channel.j2
-    dest: "/home/knzadmin/mylab/dell_configure_port_channel/files/{{ inventory_hostname }}_portchannel.cfg"
+    dest: "/home/network-admin/mylab/dell_configure_port_channel/files/{{ inventory_hostname }}_portchannel.cfg"
 
 - name: Push configuration to configure port-channel on DellEMC SoNIC Leaf Switches
   dellemc.enterprise_sonic.sonic_config:
-    src: "/home/knzadmin/mylab/dell_configure_port_channel/files/{{ inventory_hostname }}_portchannel.cfg"
+    src: "/home/network-admin/mylab/dell_configure_port_channel/files/{{ inventory_hostname }}_portchannel.cfg"
     save: yes
