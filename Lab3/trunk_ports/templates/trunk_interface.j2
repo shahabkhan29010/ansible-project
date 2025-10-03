@@ -1,0 +1,9 @@
+{% for port in access_switch_trunk_interface %}
+interface {{ port.port_id }}
+  switchport mode trunk
+{% endfor %}
+
+{% for port in leaf_switch_trunk_interface %}
+interface {{ port.port_id }}
+  switchport mode trunk
+{% endfor %}

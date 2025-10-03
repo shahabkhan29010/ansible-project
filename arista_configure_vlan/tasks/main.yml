@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_vlan
+- name: Generate script to configure VLANs on Arista switches
+  template:
+    src: arista_configure_vlan.j2
+    dest: "/home/knzadmin/mylab/arista_configure_vlan/files/{{ inventory_hostname }}_arista_configure_vlan.cfg"
+
+- name: Push script to configure VLANs on Arista switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_configure_vlan/files/{{ inventory_hostname }}_arista_configure_vlan.cfg"
+    save_when: modified

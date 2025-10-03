@@ -1,0 +1,250 @@
+- name: Configure VLANs in Arista Switches
+  hosts: dc01_leaf, dc01_spine
+  roles:
+    - arista_configure_vlan
+
+- name: Configure Access Ports in Arista Switches
+  hosts: dc01_leaf
+  roles:
+    - arista_configure_access_port
+
+- name: Configure Peer Link Port-Channel in Arista Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_peer_link_port_channel
+
+- name: Configure MLAG Layer-3 SVI in Arista Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_mlag_l3_svi
+
+- name: Configure MLAG HeartBeat IP in Arista Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_mlag_heartbeat_interface
+
+- name: Configure MLAG in Arista Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_mlag
+
+- name: Configure Port-Channels in Arista Spine Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_mlag_port_channel
+
+- name: Configure Port-Channels in Arista Leaf Switches
+  hosts: DC01-Leaf01, DC01-Leaf02
+  roles:
+    - arista_configure_port_channel
+
+- name: Configure VRRP in Arista Spine Switches
+  hosts: DC01-Spine01, DC01-Spine02
+  roles:
+    - arista_configure_vrrp
+
+- name: Configure Loopback interfaces in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_loopback
+
+- name: Configure L3 interfaces in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_l3_interface
+
+- name: Configure OSPF in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_ospf
+
+- name: Configure OSPF interfaces in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_ospf_interface
+
+- name: Configure Prefix-list in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_prefix_list
+
+- name: Configure Route-map in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_route_map
+
+- name: Configure VLANs in DellEMC SoNIC Switches
+  hosts: dellemc
+  gather_facts: no
+  roles:
+    - dell_configure_vlan
+
+- name: Configure Access ports in DellEMC SoNIC Leaf Switches
+  hosts: dc02_leaf
+  gather_facts: no
+  roles:
+    - dell_configure_access_port
+
+- name: Configure Keepalive interface in DellEMC SoNIC Spine Switches for MCLAG
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_mclag_heartbeat_interface
+
+- name: Configure Peer-Link portchannel in DellEMC SoNIC Spine Switches for MCLAG
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_peer_link_port_channel
+
+- name: Configure MCLAG in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_mclag
+
+- name: Configure VRRP in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_vrrp
+
+- name: Configure PortChannel in DellEMC SoNIC Leaf Switches
+  hosts: dc02_leaf
+  gather_facts: no
+  roles:
+    - dell_configure_port_channel
+
+- name: Configure MCLAG PortChannel in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_mclag_port_channel
+
+- name: Configure loopback interfaces in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_loopback
+
+- name: Configure L3 interface in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_l3_interface
+
+- name: Configure OSPF in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_ospf
+
+- name: Configure OSPF interface in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_ospf_interface
+
+- name: Configure Prefix-list in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_prefix_list
+
+- name: Configure Route-map in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_route_map
+
+- name: Configure loopback interface in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_loopback
+
+- name: Configure L3 interface in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_l3_interface
+
+- name: Configure OSPF in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_ospf
+
+- name: Configure OSPF interfaces in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_ospf_interface
+
+- name: Configure Prefix-list in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_prefix_list
+
+- name: Configure Route-map in Cisco Nexus Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_route_map
+
+- name: Assign IP Address to Cisco Router interfaces
+  hosts: router
+  roles: 
+    - cisco_ios_configure_l3_interface
+
+- name: Configure loopback interfaces on Cisco Router interfaces
+  hosts: router
+  roles: 
+    - cisco_ios_configure_loopback
+
+- name: Configure BGP in Cisco IOS Router
+  hosts: router
+  roles:
+    - cisco_ios_configure_bgp
+
+- name: Configure Prefix-list in Cisco IOS Router
+  hosts: router
+  roles:
+    - cisco_ios_configure_prefix_list
+
+- name: Configure Route-map in Cisco IOS Router
+  hosts: router
+  roles:
+    - cisco_ios_configure_route_map
+
+- name: Configure BGP in Cisco NXOS BGW Switches
+  hosts: nexus
+  roles:
+    - cisco_nxos_configure_bgp
+
+- name: Configure BGP in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_configure_bgp
+
+- name: Configure BGP in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_configure_bgp
+
+- name: Advertise Local Networks in Cisco IOS Router through BGP
+  hosts: router
+  roles:
+    - cisco_ios_advertise_local_networks
+
+- name: Advertise Local Networks in Cisco Nexus Switches through BGP
+  hosts: nexus
+  roles:
+    - cisco_nxos_advertise_local_networks
+
+- name: Advertise Local Networks in Arista Spine Switches
+  hosts: dc01_spine
+  roles:
+    - arista_advertise_local_networks
+
+- name: Advertise Local Networks in DellEMC SoNIC Spine Switches
+  hosts: dc02_spine
+  gather_facts: no
+  roles:
+    - dell_advertise_local_networks

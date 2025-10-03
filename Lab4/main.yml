@@ -1,0 +1,94 @@
+- name: Enable features on Nexus switches
+  hosts: spine, leaf, access
+  roles:
+    - enable_features
+
+- name: Configure VLANs on Access & Leaf switches
+  hosts: access, leaf
+  roles:
+    - configure_vlans
+
+- name: Configure trunk ports on Access & Leaf switches
+  hosts: access, leaf
+  roles:
+    - configure_trunk_ports
+
+- name: Configure access ports on Access switches
+  hosts: access
+  roles:
+    - configure_access_ports
+
+- name: Configure vrf on Leaf switches
+  hosts: leaf
+  roles:
+    - configure_vrf
+
+- name: Configure VPC keepalive interface on Leaf switches
+  hosts: active, standby
+  roles:
+    - configure_vpc_keepalive_interface
+
+- name: Configure VPC on Leaf switches
+  hosts: active, standby
+  roles:
+    - configure_vpc
+
+- name: Configure VPC Peerlink on Leaf switches
+  hosts: leaf
+  roles:
+    - configure_vpc_peerlink
+
+- name: Configure VPC Portchannel on Leaf switches
+  hosts: leaf
+  roles:
+    - configure_vpc_portchannel
+
+- name: Configure Portchannel on Access switches
+  hosts: access
+  roles:
+    - configure_portchannel
+
+- name: Configure Layer-3 SVI on Leaf switches
+  hosts: leaf
+  roles:
+    - configure_svi_interface
+
+- name: Configure HSRP on Leaf switches
+  hosts: leaf
+  roles:
+    - configure_hsrp
+
+- name: Configure Loopback on BG-Router, Spine & Leaf switches
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_loopback
+
+- name: Configure Point-to-Point interface between BG-Router & Spine, Spine & Leaf
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_l3_interface
+
+- name: Configure OSPF on Spine & Leaf switches
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_ospf
+
+- name: Configure OSPF Neighborship between Spine & Leaf switches
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_ospf_neighbor
+
+- name: Configure BGP on BG-Router & Spine switches
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_bgp
+
+- name: Configure BGP Neighborship on BG-Router & Spine switches
+  hosts: bg-router, spine, leaf
+  roles:
+    - configure_bgp_neighbor
+
+- name: Save configuration on all devices
+  hosts: bg-router, spine, leaf, access
+  roles:
+    - save_config

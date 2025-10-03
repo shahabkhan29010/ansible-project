@@ -1,0 +1,4 @@
+portchannel_id: 20
+configure_port_channel:
+  - portchannel_member: Eth1/1
+  - portchannel_member: Eth1/2

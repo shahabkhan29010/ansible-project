@@ -1,0 +1,54 @@
+enable_features:
+  - feature: bgp
+  - feature: ospf
+  - feature: interface-vlan
+  - feature: hsrp
+  - feature: vpc
+  - feature: lacp
+
+device_name: leaf03
+loopback_interfaces:
+  - ip_address: 201.201.201.201/32
+    interface: loopback0
+
+hsrp:
+  - interface: vlan10
+    ip_address: 172.16.10.2/24
+    hsrp_id: 10
+    hsrp_priority: 255
+    vip: 172.16.10.1
+  - interface: vlan20
+    ip_address: 172.16.20.2/24
+    hsrp_id: 20
+    hsrp_priority: 255
+    vip: 172.16.20.1
+
+vpc_keepalive:
+  - interface_name: Ethernet1/3
+    vrf: keepalive
+    ip_address: 1.1.1.1/30
+
+vpc:
+  - vpc_id: 20
+    vpc_role_priority: 1
+    vpc_system_priority: 10
+    source_ip: 1.1.1.1
+    destination_ip: 1.1.1.2
+
+vpc_peerlink:
+    - interface_name: Ethernet1/4
+      port_channel_id: 201
+    - interface_name: Ethernet1/5
+      port_channel_id: 201
+
+bgp_asn: 65002
+bgp_config:
+  - remote_bgp_asn: 65000
+    remote_ip: 21.21.21.21
+    source_ip: loopback0
+  - remote_bgp_asn: 65000
+    remote_ip: 22.22.22.22
+    source_ip: loopback0
+  - remote_bgp_asn: 65002
+    remote_ip: 202.202.202.202
+    source_ip: loopback0

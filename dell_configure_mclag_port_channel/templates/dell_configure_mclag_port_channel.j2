@@ -1,0 +1,10 @@
+{% for portchannel in configure_port_channel %}
+interface PortChannel {{ portchannel.portchannel_id }}
+  switchport trunk allowed vlan all
+  mclag {{ portchannel.mclag_id }}
+  no shutdown
+
+interface {{ portchannel.portchannel_member }}
+  channel-group {{ portchannel.portchannel_id }}
+  no shutdown
+{% endfor %}

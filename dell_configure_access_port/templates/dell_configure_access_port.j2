@@ -1,0 +1,5 @@
+{% for interface in configure_access_port %}
+interface {{ interface.access_port_name }}
+  switchport access vlan {{ interface.access_port_vlan_id }}
+  no shutdown
+{% endfor %}

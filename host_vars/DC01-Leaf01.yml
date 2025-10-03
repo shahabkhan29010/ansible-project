@@ -1,0 +1,5 @@
+configure_port_channel:
+  - po_member: Ethernet1
+    port_channel_id: 10
+  - po_member: Ethernet2
+    port_channel_id: 10

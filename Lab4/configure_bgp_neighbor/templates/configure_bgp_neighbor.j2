@@ -1,0 +1,26 @@
+{% if ansible_network_os == 'cisco.ios.ios' %}
+router bgp {{ bgp_asn }}
+  {% for neighbor in bgp_neighbors %}
+  neighbor {{ neighbor.bgp_neighbor_ip }} remote-as {{ neighbor.bgp_neighbor_asn }}
+  neighbor {{ neighbor.bgp_neighbor_ip }} update-source loopback1
+  neighbor {{ neighbor.bgp_neighbor_ip }} ebgp-multihop 2
+  address-family ipv4 unicast
+    neighbor {{ neighbor.bgp_neighbor_ip }} activate
+    neighbor {{ neighbor.bgp_neighbor_ip }} soft-reconfiguration inbound
+    maximum-paths 2
+  {% endfor %}
+{% endif %}
+
+{% if ansible_network_os == 'cisco.nxos.nxos' %}
+router bgp {{ bgp_asn }}
+  {% for neighbor in bgp_neighbors %}
+  neighbor {{ neighbor.bgp_neighbor_ip }}
+      remote-as {{ neighbor.bgp_neighbor_asn }}
+      update-source {{ neighbor.bgp_src }}
+      ebgp-multihop 2
+      address-family ipv4 unicast
+        soft-reconfiguration inbound always
+  {% endfor %}
+  address-family ipv4 unicast
+      maximum-paths 2
+{% endif %}

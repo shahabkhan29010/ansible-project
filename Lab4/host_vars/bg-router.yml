@@ -1,0 +1,46 @@
+loopback_interfaces:
+  - loopback_id: 1
+    loopback_ip: 1.1.1.1
+    loopback_mask: 255.255.255.255
+  - loopback_id: 2
+    loopback_ip: 4.4.2.2
+    loopback_mask: 255.255.255.255
+  - loopback_id: 3
+    loopback_ip: 8.8.8.8
+    loopback_mask: 255.255.255.255
+
+l3_interfaces:
+  - l3_port_name: GigabitEthernet2
+    l3_port_ip: 100.100.100.1
+    l3_port_mask: 255.255.255.252
+  - l3_port_name: GigabitEthernet3
+    l3_port_ip: 200.200.200.1
+    l3_port_mask: 255.255.255.252
+
+ospf_config:
+  - ospf_process_id: 3
+    ospf_router_id: 1.1.1.1
+
+ospf_neighbors:
+  - ospf_interface: GigabitEthernet2
+    ospf_process_id: 3
+    ospf_area_id: 0.0.0.0
+  - ospf_interface: GigabitEthernet3
+    ospf_process_id: 3
+    ospf_area_id: 0.0.0.0
+  - ospf_interface: Loopback1
+    ospf_process_id: 3
+    ospf_area_id: 0.0.0.0
+
+bgp_config:
+  - bgp_process_id: 100
+    bgp_router_id: 1.1.1.1
+
+bgp_asn: 100
+bgp_neighbors:
+  - bgp_neighbor_ip: 11.11.11.11
+    bgp_neighbor_asn: 65000
+    bgp_src: loopback1
+  - bgp_neighbor_ip: 12.12.12.12
+    bgp_neighbor_asn: 65000
+    bgp_src: loopback1

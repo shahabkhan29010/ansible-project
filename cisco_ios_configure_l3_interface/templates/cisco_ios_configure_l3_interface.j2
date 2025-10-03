@@ -1,0 +1,5 @@
+{% for interface in configure_l3_interface %}
+interface {{ interface.interface_name }}
+  ip address {{ interface.interface_ip }} {{ interface.interface_mask }}
+  no shutdown
+{% endfor %}

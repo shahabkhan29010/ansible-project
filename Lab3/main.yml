@@ -1,0 +1,59 @@
+- hosts: nexus
+  roles:
+    - enable_features
+
+- hosts: leaf, access
+  roles:
+    - layer2_ports
+
+- hosts: access
+  roles:
+    - access_ports
+
+- hosts: nexus
+  roles:
+    - no_shut_interface
+
+#- hosts: nexus
+#  roles:
+#    - trunk_ports
+
+- hosts: nexus
+  roles:
+    - layer3_interface
+
+- hosts: spine, leaf
+  roles:
+    - loopback_interface
+
+- hosts: spine, leaf
+  roles:
+    - loopback_interface
+
+- hosts: leaf
+  roles:
+    - configure_hsrp
+
+- hosts: leaf
+  roles:
+    - configure_vpc
+
+- hosts: leaf, access
+  roles:
+    - configure_portchannel
+
+- hosts: spine, leaf
+  roles:
+    - configure_ospf
+
+- hosts: spine, leaf
+  roles:
+    - configure_bgp
+
+- hosts: bg-router
+  roles:
+    - config_bgp_external
+
+- hosts: leaf
+  roles:
+    - advertise_networks

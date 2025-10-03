@@ -1,0 +1,74 @@
+mlag_port_channel_id: 100
+mlag_port_channel_members:
+  - port_channel_members: Ethernet3
+  - port_channel_members: Ethernet4
+
+mlag_l3_svi:
+  - mlag_vlan_id: 4094
+    mlag_svi_ip: 1.1.1.2/30
+
+mlag_heartbeat:
+  - mlag_hb_ip: 101.101.101.102/30
+    mlag_hb_interface: Ethernet2
+        
+configure_mlag:
+  - mlag_domain_id: dc01
+    mlag_vlan_id: 4094
+    mlag_local_ip: 1.1.1.2/30
+    mlag_peer_address: 1.1.1.1
+    mlag_heartbeat_address: 101.101.101.101
+    mlag_peer_link: Port-Channel100
+
+configure_port_channel:
+  - po_member: Ethernet5
+    port_channel_id: 10
+    mlag_id: 10
+  - po_member: Ethernet6
+    port_channel_id: 20
+    mlag_id: 20
+
+configure_vrrp:
+  - vrrp_vlan_id: 10
+    vrrp_id: 10
+    vrrp_vlan_ip: 172.16.10.3/24
+    vrrp_vip: 172.16.10.1
+    vrrp_priority: 100
+  - vrrp_vlan_id: 20
+    vrrp_id: 20
+    vrrp_vlan_ip: 172.16.20.3/24
+    vrrp_vip: 172.16.20.1
+    vrrp_priority: 100
+
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 112.112.112.112/32
+
+configure_l3_interface:
+  - interface_name: Ethernet1
+    interface_ip: 20.20.20.2/30
+
+configure_ospf:
+  - ospf_process_id: 1
+    ospf_router_id: 112.112.112.112
+
+configure_ospf_interface:
+  - ospf_interface_id: Loopback0
+    ospf_area: 0.0.0.0
+  - ospf_interface_id: Ethernet1
+    ospf_area: 0.0.0.0
+
+bgp_asn: 65100
+bgp_router_id: 112.112.112.112
+configure_bgp:
+  - bgp_neighbor: 11.11.11.11
+    bgp_neighbor_asn: 65001
+
+configure_prefix_list:
+  - prefix_list_seq_number: 10
+    prefix_list_network: 172.16.10.0/24
+  - prefix_list_seq_number: 20
+    prefix_list_network: 172.16.20.0/24
+  - prefix_list_seq_number: 30
+    prefix_list_network: 20.20.20.0/30
+  - prefix_list_seq_number: 40
+    prefix_list_network: 112.112.112.112/32

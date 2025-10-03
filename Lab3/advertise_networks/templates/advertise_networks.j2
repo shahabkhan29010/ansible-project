@@ -1,0 +1,5 @@
+{% for network in local_networks %}
+router bgp {{ local_asn }}
+  address-family ipv4 unicast
+    network {{ network.subnet }}
+{% endfor %}

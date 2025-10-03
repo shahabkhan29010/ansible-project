@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_vrf
+- name: Generate scripts to configure vrf on Leaf switches
+  template:
+    src: configure_vrf.j2
+    dest: "/home/knzadmin/mylab/configure_vrf/files/{{ inventory_hostname }}_vrf.cfg"
+
+- name: Push configuration to Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_vrf/files/{{ inventory_hostname }}_vrf.cfg"

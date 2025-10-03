@@ -1,0 +1,5 @@
+{% for vlan in configure_vlans %}
+interface vlan {{ vlan.vlan_id }}
+  description {{ vlan.vlan_description }}
+  no shutdown
+{% endfor %}

@@ -1,0 +1,9 @@
+router bgp {{ bgp_asn }}
+  router-id {{ bgp_router_id }}
+  {% for neighbor in configure_bgp %}
+  neighbor {{ neighbor.bgp_neighbor }} remote-as {{ neighbor.bgp_neighbor_asn }}
+  neighbor {{ neighbor.bgp_neighbor }} update-source Loopback0
+  neighbor {{ neighbor.bgp_neighbor }} ebgp-multihop
+  address-family ipv4
+    neighbor {{ neighbor.bgp_neighbor }} activate
+  {% endfor %}

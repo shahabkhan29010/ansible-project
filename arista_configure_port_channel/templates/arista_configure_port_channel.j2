@@ -1,0 +1,9 @@
+{% for po_member_interface in configure_port_channel %}
+interface Port-Channel {{ po_member_interface.port_channel_id }}
+  switchport mode trunk
+  no shutdown
+
+interface {{ po_member_interface.po_member }}
+  channel-group {{ po_member_interface.port_channel_id }} mode active
+  no shutdown
+{% endfor %}

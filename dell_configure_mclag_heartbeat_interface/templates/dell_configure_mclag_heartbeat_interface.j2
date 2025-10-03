@@ -1,0 +1,8 @@
+ip vrf Vrf-keepalive
+{% for interface in configure_mclag_keepalive %}
+interface {{ interface.keepalive_interface }}
+  no switchport trunk allowed Vlan 1-4094
+  ip vrf forwarding Vrf-keepalive
+  ip address {{ interface.keepalive_ip_address }}
+  no shutdown
+{% endfor %}

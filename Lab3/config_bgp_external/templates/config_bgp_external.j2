@@ -1,0 +1,18 @@
+{% for interface in interface_config %}
+interface {{ interface.interface_name }}
+  ip address {{ interface.ip_address }} {{ interface.subnet_mask }}
+  no shut
+{% endfor %}
+
+{% for bgp in bgp_config %}
+router bgp {{ bgp_asn }}
+  bgp router-id 10.10.10.10
+  neighbor {{ bgp.remote_ip }} remote-as {{ bgp.remote_asn }}
+  neighbor {{ bgp.remote_ip }} update-source {{ bgp.source_interface }}
+  neighbor {{ bgp.remote_ip }} ebgp-multihop 2
+  address-family ipv4 unicast
+    neighbor {{ bgp.remote_ip }} activate
+    neighbor {{ bgp.remote_ip }} soft-reconfiguration inbound
+    network 10.10.10.10 mask 255.255.255.255
+    maximum-paths 2
+{% endfor %}

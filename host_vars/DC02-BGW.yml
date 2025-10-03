@@ -1,0 +1,43 @@
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 22.22.22.22/32
+
+configure_l3_interface:
+  - interface_name: Ethernet1/1
+    interface_ip: 40.40.40.1/30
+  - interface_name: Ethernet1/2
+    interface_ip: 30.30.30.1/30
+  - interface_name: Ethernet1/9
+    interface_ip: 3.3.3.2/30
+
+configure_ospf:
+  - ospf_process_id: 1
+    ospf_router_id: 22.22.22.22
+
+configure_ospf_interface:
+  - ospf_interface: Loopback0
+    ospf_process: 1
+    ospf_area: 0.0.0.0
+  - ospf_interface: Ethernet1/1
+    ospf_process: 1
+    ospf_area: 0.0.0.0
+  - ospf_interface: Ethernet1/2
+    ospf_process: 1
+    ospf_area: 0.0.0.0
+
+bgp_asn: 65002
+bgp_router_id: 22.22.22.22
+configure_nxos_bgp:
+  - bgp_neighbor: 211.211.211.211
+    bgp_neighbor_asn: 65200
+  - bgp_neighbor: 212.212.212.212
+    bgp_neighbor_asn: 65200
+configure_ios_bgp:
+  - bgp_neighbor: 3.3.3.1
+    bgp_neighbor_asn: 100
+
+configure_prefix_list:
+  - prefix_list_seq_number: 10
+    prefix_list_network: 30.30.30.0/30
+  - prefix_list_seq_number: 20
+    prefix_list_network: 40.40.40.0/30

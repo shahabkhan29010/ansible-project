@@ -1,0 +1,5 @@
+{% if ansible_network_os == 'cisco.nxos.nxos' %}
+copy running-config startup-config
+{% elif ansible_network_os == 'cisco.ios.ios' %}
+do write memory
+{% endif %}

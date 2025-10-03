@@ -1,0 +1,12 @@
+configure_vlans:
+  - vlan_id: 10
+    vlan_name: VLAN_10
+  - vlan_id: 20
+    vlan_name: VLAN_20
+
+access_ports:
+  - access_interface: Ethernet11
+    access_vlan: 10
+  - access_interface: Ethernet12
+    access_vlan: 20
+

@@ -1,0 +1,6 @@
+{% for trunk_port in trunk_ports %}
+interface {{ trunk_port.trunk_port_id }}
+  switchport mode trunk
+  switchport trunk allowed vlan {{ trunk_port.trunk_allowed_vlans }}
+  no shut
+{% endfor %}

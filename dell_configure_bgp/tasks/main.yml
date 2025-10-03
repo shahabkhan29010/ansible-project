@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_bgp
+- name: Generate script to configure BGP in DellEMC SoNIC Spine Switches
+  template:
+    src: dell_configure_bgp.j2
+    dest: "/home/knzadmin/mylab/dell_configure_bgp/files/{{ inventory_hostname }}_bgp.cfg"
+
+- name: Push configuration to configure BGP in DellEMC SoNIC Spine Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_bgp/files/{{ inventory_hostname }}_bgp.cfg"
+    save: yes

@@ -1,0 +1,13 @@
+ip routing
+{% for vrrp in configure_vrrp %}
+interface vlan {{ vrrp.vrrp_vlan_id }}
+  ip address {{ vrrp.vrrp_vlan_ip }}
+  vrrp {{ vrrp.vrrp_id }} ipv4 {{ vrrp.vrrp_vip }}
+  vrrp {{ vrrp.vrrp_id }} ipv4 version 2
+  vrrp {{ vrrp.vrrp_id }} priority-level {{ vrrp.vrrp_priority }}
+  no vrrp {{ vrrp.vrrp_id }} disabled
+  {% if inventory_hostname == 'DC01-Spine01' %}
+  vrrp {{ vrrp.vrrp_id }} preempt
+  {% endif %}
+  no shutdown
+{% endfor %}

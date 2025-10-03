@@ -1,0 +1,8 @@
+interface PortChannel {{ peer_link_port_channel_id }}
+  switchport trunk allowed vlan all
+  no shutdown
+{% for members in configure_peer_link_port_channel%}
+interface {{ members.member }}
+  channel-group {{ peer_link_port_channel_id }}
+  no shutdown
+{% endfor %}

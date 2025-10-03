@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_ospf
+- name: Generate OSPF config script
+  template:
+    src: configure_ospf.j2
+    dest: "/home/knzadmin/mylab/configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+
+- name: Push OSPF config to switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"

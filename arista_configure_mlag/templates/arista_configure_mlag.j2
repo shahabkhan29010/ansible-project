@@ -1,0 +1,9 @@
+{% for mlag in configure_mlag %}
+mlag configuration
+  domain-id {{ mlag.mlag_domain_id }}
+  local-interface vlan {{ mlag.mlag_vlan_id }}
+  peer-address {{ mlag.mlag_peer_address }}
+  peer-address heartbeat {{ mlag.mlag_heartbeat_address }}
+  peer-link {{ mlag.mlag_peer_link }}
+  no shutdown
+{% endfor %}

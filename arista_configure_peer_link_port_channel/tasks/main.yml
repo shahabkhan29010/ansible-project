@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_port_channel
+- name: Generate scripts for Peer-Link Port-Channel on Spine Switches
+  template:
+    src: arista_configure_peer_link_port_channel.j2
+    dest: "/home/knzadmin/mylab/arista_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peer_link_port_channel.cfg"
+
+- name: Push scripts to configure Peer-Link Port-Channel on Spine Switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_configure_peer_link_port_channel/files/{{ inventory_hostname }}_peer_link_port_channel.cfg"
+    save_when: modified

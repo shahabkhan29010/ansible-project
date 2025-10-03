@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_route_map
+- name: Generate scripts to configure Route-map in Arista Spine Switches
+  template:
+    src: arista_configure_route_map.j2
+    dest: "/home/knzadmin/mylab/arista_configure_route_map/files/{{ inventory_hostname }}_route_map.cfg"
+
+- name: Push configuration to configure Route-map in Arista Spine Switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_configure_route_map/files/{{ inventory_hostname }}_route_map.cfg"
+    save_when: modified

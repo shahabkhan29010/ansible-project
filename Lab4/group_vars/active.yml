@@ -1,0 +1,9 @@
+vpc_keepalive:
+  - keepalive_port: Ethernet1/3
+    keepalive_ip: 1.1.1.1/30
+
+vpc_config:
+  - vpc_domain_id: 100
+    vpc_destination_ip: 1.1.1.2
+    vpc_source_ip: 1.1.1.1
+    vpc_role_priority: 10

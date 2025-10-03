@@ -1,0 +1,8 @@
+enable_features:
+  - feature: lacp
+
+portchannel:
+  - po_interface: Ethernet1/1
+    po_id: 20
+  - po_interface: Ethernet1/2
+    po_id: 20

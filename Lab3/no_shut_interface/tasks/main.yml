@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for no_shut_interface
+- name: Generate scripts
+  template:
+    src: no_shut_interface.j2
+    dest: "/home/knzadmin/mylab/no_shut_interface/files/{{ inventory_hostname }}_no_shut_interface.cfg"
+
+- name: Push the configuration
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/no_shut_interface/files/{{ inventory_hostname }}_no_shut_interface.cfg"
+    

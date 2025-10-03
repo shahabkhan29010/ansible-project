@@ -1,0 +1,12 @@
+{% for mlag_interface in mlag_l3_svi %}
+vlan {{ mlag_interface.mlag_vlan_id }}
+  name MLAG_VLAN
+
+interface Vlan {{ mlag_interface.mlag_vlan_id }}
+  ip address {{ mlag_interface.mlag_svi_ip }}
+  no shutdown
+
+interface Ethernet1
+  switchport mode trunk
+  no shutdown
+{% endfor %}

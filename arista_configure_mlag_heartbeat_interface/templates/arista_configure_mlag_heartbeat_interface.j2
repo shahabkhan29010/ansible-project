@@ -1,0 +1,7 @@
+vrf instance heartbeat
+{% for interface in mlag_heartbeat %}
+interface {{ interface.mlag_hb_interface }}
+  vrf heartbeat
+  ip address {{ interface.mlag_hb_ip }}
+  no shutdown
+{% endfor %}

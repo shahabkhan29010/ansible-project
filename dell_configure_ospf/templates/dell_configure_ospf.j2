@@ -1,0 +1,5 @@
+{% for ospf in configure_ospf %}
+router ospf
+  ospf router-id {{ ospf.ospf_router_id }}
+  area {{ ospf.ospf_area }}
+{% endfor %}

@@ -1,0 +1,32 @@
+{% for keepalive in vpc_keepalive %}
+vrf context {{ keepalive.vrf }}
+  address-family ipv4 unicast
+interface {{ keepalive.interface_name }}
+  no switchport
+  vrf member {{ keepalive.vrf }}
+  ip address {{ keepalive.ip_address }}
+  no shutdown
+{% endfor %}
+
+{% for vpc in vpc %}
+vpc domain {{ vpc.vpc_id }}
+  {% if inventory_hostname in ['leaf01', 'leaf03'] %}
+  role priority {{ vpc.vpc_role_priority }}
+  {% endif %}
+  system-priority {{ vpc.vpc_system_priority }}
+  peer-keepalive destination {{ vpc.destination_ip }} source {{ vpc.source_ip}} vrf keepalive
+{% endfor %}
+
+{% for peer_link in vpc_peerlink %}
+interface port-channel{{ peer_link.port_channel_id }}
+  switchport
+  switchport mode trunk
+  vpc peer-link
+  no shutdown
+{% endfor %}
+
+{% for port in vpc_peerlink %}
+interface {{ port.interface_name }}
+  channel-group {{ port.port_channel_id }} force mode active
+  no shutdown
+{% endfor %}

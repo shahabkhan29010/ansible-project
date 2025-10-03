@@ -1,0 +1,8 @@
+{% for ospf in ospf_config %}
+router ospf {{ ospf.ospf_process_id }}
+{% endfor %}
+
+{% for interface in ospf_interfaces %}
+interface {{ interface.ospf_int }}
+  ip router ospf {{ interface.ospf_process_id }} area {{ interface.ospf_area_id }}
+{% endfor %}

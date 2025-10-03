@@ -1,0 +1,52 @@
+loopback_interfaces:
+  - loopback_id: 1
+    loopback_ip: 11.11.11.11/32
+  - loopback_id: 2
+    loopback_ip: 21.21.21.21/32
+  - loopback_id: 3
+    loopback_ip: 101.101.101.101/32
+
+l3_interfaces:
+  - l3_port_name: Ethernet1/1
+    l3_port_ip: 100.100.100.2/30
+  - l3_port_name: Ethernet1/2
+    l3_port_ip: 192.168.11.1/30
+  - l3_port_name: Ethernet1/3
+    l3_port_ip: 192.168.12.1/30
+  - l3_port_name: Ethernet1/4
+    l3_port_ip: 172.16.11.1/30
+  - l3_port_name: Ethernet1/5
+    l3_port_ip: 172.16.12.1/30
+
+ospf_config:
+  - ospf_process_id: 1
+    ospf_router_id: 11.11.11.11
+  - ospf_process_id: 2
+    ospf_router_id: 21.21.21.21
+  - ospf_process_id: 3
+    ospf_router_id: 101.101.101.101
+
+bgp_config:
+  - bgp_process_id: 65000
+    bgp_router_id: 11.11.11.11
+
+bgp_asn: 65000
+bgp_neighbors:
+  - bgp_neighbor_ip: 1.1.1.1
+    bgp_neighbor_asn: 100
+    bgp_src: loopback3
+  - bgp_neighbor_ip: 12.12.12.12
+    bgp_neighbor_asn: 65000
+    bgp_src: loopback1
+  - bgp_neighbor_ip: 10.10.10.10
+    bgp_neighbor_asn: 65001
+    bgp_src: loopback1
+  - bgp_neighbor_ip: 20.20.20.20
+    bgp_neighbor_asn: 65001
+    bgp_src: loopback1
+  - bgp_neighbor_ip: 30.30.30.30
+    bgp_neighbor_asn: 65002
+    bgp_src: loopback2
+  - bgp_neighbor_ip: 40.40.40.40
+    bgp_neighbor_asn: 65002
+    bgp_src: loopback2

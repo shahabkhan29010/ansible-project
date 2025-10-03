@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_hsrp
+- name: Generate script for HSRP configuration on Leaf switches
+  template:
+    src: configure_hsrp.j2
+    dest: "/home/knzadmin/mylab/configure_hsrp/files/{{ inventory_hostname }}_hsrp.cfg"
+
+- name: Push HSRP configuration to Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_hsrp/files/{{ inventory_hostname }}_hsrp.cfg"

@@ -1,0 +1,9 @@
+interface Port-Channel {{ mlag_port_channel_id }}
+  switchport mode trunk
+  no shutdown
+
+{% for members in mlag_port_channel_members %}
+interface {{ members.port_channel_members }}
+  channel-group {{ mlag_port_channel_id }} mode active
+  no shutdown
+{% endfor %}

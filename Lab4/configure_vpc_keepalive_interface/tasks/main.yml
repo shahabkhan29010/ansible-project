@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_keepalive_interface
+- name: Generate script to configure VPC Keepalive IP in Leaf switches
+  template:
+    src: configure_vpc_keepalive_interface.j2
+    dest: "/home/knzadmin/mylab/configure_vpc_keepalive_interface/files/{{ inventory_hostname }}_keepalive.cfg"
+
+- name: Push configuration to Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_vpc_keepalive_interface/files/{{ inventory_hostname }}_keepalive.cfg"

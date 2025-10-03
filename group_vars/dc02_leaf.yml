@@ -1,0 +1,5 @@
+configure_access_port:
+  - access_port_name: Eth1/6
+    access_port_vlan_id: 10
+  - access_port_name: Eth1/7
+    access_port_vlan_id: 20

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for cisco_ios_configure_route_map
+- name: Generate scripts to configure Route-map in Cisco IOS Router
+  template:
+    src: cisco_ios_configure_route_map.j2
+    dest: "/home/knzadmin/mylab/cisco_ios_configure_route_map/files/{{ inventory_hostname }}_route_map.cfg"
+
+- name: Push configuration to configure Route-map in Cisco IOS Router
+  cisco.ios.ios_config:
+    src: "/home/knzadmin/mylab/cisco_ios_configure_route_map/files/{{ inventory_hostname }}_route_map.cfg"
+    save_when: modified

@@ -1,0 +1,20 @@
+---
+- name: VLAN configuration playbook
+  hosts: switches
+  gather_facts: no
+  connection: network_cli
+
+  vars_files:
+    - vars/vlans.yml
+
+  tasks:
+    - import_tasks: tasks/vlan_setup.yml
+
+playbook.yml
+---
+- name: Configure point-to-point interfaces on multiple NX-OS devices
+  hosts: switches
+  gather_facts: no
+
+  tasks:
+    - import_tasks: tasks/configure_interfaces.yml

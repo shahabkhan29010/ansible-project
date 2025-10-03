@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_vpc_peerlink
+- name: Generate scripts to configure VPC Peerlink on Leaf switches
+  template:
+    src: configure_vpc_peerlink.j2
+    dest: "/home/knzadmin/mylab/configure_vpc_peerlink/files/{{ inventory_hostname }}_vpc_peerlink.cfg"
+
+- name: Push VPC Peerlink configuration to Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_vpc_peerlink/files/{{ inventory_hostname }}_vpc_peerlink.cfg"

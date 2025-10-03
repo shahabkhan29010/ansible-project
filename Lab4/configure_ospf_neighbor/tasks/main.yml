@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_ospf_neighbor
+- name: Generate scripts to configure OSPF Neighbor
+  template:
+    src: configure_ospf_neighbor.j2
+    dest: "/home/knzadmin/mylab/configure_ospf_neighbor/files/{{ inventory_hostname }}_ospf_neighbor.cfg"
+
+- name: Push OSPF Neighbor configuration to Spine & Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_ospf_neighbor/files/{{ inventory_hostname }}_ospf_neighbor.cfg"
+  when: inventory_hostname != 'bg-router'
+
+- name: Push OSPF Neighbor configuration to BG-Router
+  cisco.ios.ios_config:
+    src: "/home/knzadmin/mylab/configure_ospf_neighbor/files/{{ inventory_hostname }}_ospf_neighbor.cfg"
+  when: inventory_hostname == 'bg-router'

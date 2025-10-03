@@ -1,0 +1,7 @@
+{% for vpc in vpc_config %}
+vpc domain {{ vpc.vpc_domain_id }}
+  peer-keepalive destination {{ vpc.vpc_destination_ip }} source {{ vpc.vpc_source_ip }} vrf keepalive
+  role priority {{ vpc.vpc_role_priority }}
+  system-priority 255
+  peer-switch
+{% endfor %}

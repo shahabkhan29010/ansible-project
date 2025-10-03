@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for enable_features
+- name: Configure script to enable features on the switches
+  template:
+    src: enable_features.j2
+    dest: "/home/knzadmin/mylab/enable_features/files/{{ inventory_hostname }}_enable_features.cfg"
+
+- name: Push script to the switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/enable_features/files/{{ inventory_hostname }}_enable_features.cfg"

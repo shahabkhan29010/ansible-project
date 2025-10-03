@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_advertise_local_networks
+- name: Generate script to advertise Local Networks in Arista Spine Switches
+  template:
+    src: arista_advertise_local_networks.j2
+    dest: "/home/knzadmin/mylab/arista_advertise_local_networks/files/{{ inventory_hostname }}_advertise_networks.cfg"
+
+- name: Push configuration to advertise Local Networks in Arista Spine Switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_advertise_local_networks/files/{{ inventory_hostname }}_advertise_networks.cfg"
+    save_when: modified

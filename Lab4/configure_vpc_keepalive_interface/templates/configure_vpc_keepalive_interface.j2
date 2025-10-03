@@ -1,0 +1,7 @@
+{% for keepalive in vpc_keepalive %}
+copy running-config startup-config
+interface {{ keepalive.keepalive_port }}
+  description VPC Keepalive Interface
+  ip address {{ keepalive.keepalive_ip }}
+  no shutdown
+{% endfor %}

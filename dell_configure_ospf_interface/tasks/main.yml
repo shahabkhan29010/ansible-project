@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_ospf_interface
+- name: Generate scripts to configure ospf in DellEMC SoNIC Spine Switches
+  template:
+    src: dell_configure_ospf_interface.j2
+    dest: "/home/knzadmin/mylab/dell_configure_ospf_interface/files/{{ inventory_hostname }}_ospf_interface.cfg"
+
+- name: Push configuration to configure ospf in DellEMC SoNIC Spine Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_ospf_interface/files/{{ inventory_hostname }}_ospf_interface.cfg"
+    save: yes

@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for layer3_interface
+- name: Generate script to assign IP address
+  template:
+    src: layer3_interface.j2
+    dest: "/home/knzadmin/mylab/layer3_interface/files/{{ inventory_hostname }}_layer3_interface.cfg"
+  
+- name: Push the configuration to switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/layer3_interface/files/{{ inventory_hostname }}_layer3_interface.cfg"

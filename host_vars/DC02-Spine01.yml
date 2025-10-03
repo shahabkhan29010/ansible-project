@@ -1,0 +1,71 @@
+configure_mclag_keepalive:
+  - keepalive_interface: Eth1/2
+    keepalive_ip_address: 201.201.201.201/30
+
+peer_link_port_channel_id: 100
+configure_peer_link_port_channel:
+  - member: Eth1/3
+  - member: Eth1/4
+
+configure_mclag:
+  - mclag_domain_id: 100
+    mclag_peer_ip: 201.201.201.202
+    mclag_source_ip: 201.201.201.201
+    mclag_peer_link: PortChannel100
+    mclag_session_vrf: Vrf-keepalive
+
+configure_vrrp:
+  - vrrp_interface_id: 10
+    vrrp_id: 10
+    vrrp_interface_ip: 192.168.10.2/24
+    vrrp_priority: 254
+    vrrp_vip: 192.168.10.1
+  - vrrp_interface_id: 20
+    vrrp_id: 20
+    vrrp_interface_ip: 192.168.20.2/24
+    vrrp_priority: 254
+    vrrp_vip: 192.168.20.1
+
+configure_port_channel:
+  - portchannel_id: 10
+    portchannel_member: Eth1/6
+    mclag_id: 100
+  - portchannel_id: 20
+    portchannel_member: Eth1/5
+    mclag_id: 100
+
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 211.211.211.211/32
+    
+configure_l3_interface:
+  - interface_name: Eth1/1
+    interface_ip: 30.30.30.2/30
+
+configure_ospf:
+  - ospf_router_id: 211.211.211.211
+    ospf_area: 0.0.0.0
+
+configure_ospf_interface:
+  - ospf_interface: Loopback0
+    ospf_area: 0.0.0.0
+    ospf_interface_ip: 211.211.211.211
+  - ospf_interface: Eth1/1
+    ospf_area: 0.0.0.0
+    ospf_interface_ip: 30.30.30.2
+
+bgp_asn: 65200
+bgp_router_id: 211.211.211.211
+configure_bgp:
+  - bgp_neighbor: 22.22.22.22
+    bgp_neighbor_asn: 65002
+
+configure_prefix_list:
+  - prefix_list_seq_number: 10
+    prefix_list_network: 192.168.10.0/24
+  - prefix_list_seq_number: 20
+    prefix_list_network: 192.168.20.0/24
+  - prefix_list_seq_number: 30
+    prefix_list_network: 30.30.30.0/30
+  - prefix_list_seq_number: 40
+    prefix_list_network: 211.211.211.211/32

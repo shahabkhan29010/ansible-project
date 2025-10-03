@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_vlan
+- name: Generate scripts to configure VLANs on Dell SoNIC Switches
+  template:
+    src: dell_configure_vlan.j2
+    dest: "/home/knzadmin/mylab/dell_configure_vlan/files/{{ inventory_hostname }}_vlan.cfg"
+
+- name: Push configuration to configure VLANs on Dell SoNIC Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_vlan/files/{{ inventory_hostname }}_vlan.cfg"
+    save: yes

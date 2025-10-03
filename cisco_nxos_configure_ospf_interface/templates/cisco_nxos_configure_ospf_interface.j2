@@ -1,0 +1,4 @@
+{% for ospf_interface in configure_ospf_interface %}
+interface {{ ospf_interface.ospf_interface }}
+  ip router ospf {{ ospf_interface.ospf_process }} area {{ ospf_interface.ospf_area }}
+{% endfor %}

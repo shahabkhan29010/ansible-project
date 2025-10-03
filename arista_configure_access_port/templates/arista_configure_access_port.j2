@@ -1,0 +1,6 @@
+{% for port in access_ports %}
+interface {{ port.access_interface }}
+  switchport mode access
+  switchport access vlan {{ port.access_vlan }}
+  no shutdown
+{% endfor %}

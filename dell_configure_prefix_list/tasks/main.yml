@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_prefix_list
+- name: Generate scripts to configure Prefix-list in DellEMC SoNIC Spine Switches
+  template:
+    src: dell_configure_prefix_list.j2
+    dest: "/home/knzadmin/mylab/dell_configure_prefix_list/files/{{ inventory_hostname }}_prefix_list.cfg"
+
+- name: Push configuration to configure Prefix-list in DellEMC SoNIC Spine Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_prefix_list/files/{{ inventory_hostname }}_prefix_list.cfg"
+    save: yes

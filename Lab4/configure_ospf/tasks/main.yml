@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_ospf
+- name: Generate script to configure OSPF on Spine & Leaf switches
+  template:
+    src: configure_ospf.j2
+    dest: "/home/knzadmin/mylab/configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+
+- name: Push OSPF configuration to Spine & Leaf switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+  when: inventory_hostname != 'bg-router'
+
+- name: Push OSPF configuration to Spine & Leaf switches
+  cisco.ios.ios_config:
+    src: "/home/knzadmin/mylab/configure_ospf/files/{{ inventory_hostname }}_ospf.cfg"
+  when: inventory_hostname == 'bg-router'

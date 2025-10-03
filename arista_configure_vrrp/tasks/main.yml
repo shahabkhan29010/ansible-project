@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_vrrp
+- name: Generate scripts to configure VRRP on Arista Spine Switches
+  template:
+    src: arista_configure_vrrp.j2
+    dest: "/home/knzadmin/mylab/arista_configure_vrrp/files/{{ inventory_hostname }}_vrrf_config.cfg"
+  
+- name: Push configuration to configure VRRP on Arista Spine Switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_configure_vrrp/files/{{ inventory_hostname }}_vrrf_config.cfg"
+    save_when: modified

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_access_port
+- name: Generate scripts for configuration of access ports in Arista Leaf Switches
+  template:
+    src: arista_configure_access_port.j2
+    dest: "/home/knzadmin/mylab/arista_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
+
+- name: Push scripts to configure access ports in Arista Leaf Switches
+  arista.eos.eos_config:
+    src: "/home/knzadmin/mylab/arista_configure_access_port/files/{{ inventory_hostname }}_access_port.cfg"
+    save_when: modified

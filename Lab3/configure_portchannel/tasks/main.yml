@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for configure_portchannel
+- name: Generate script to configure downstream portchannel
+  template:
+    src: configure_portchannel.j2
+    dest: "/home/knzadmin/mylab/configure_portchannel/files/{{ inventory_hostname }}_po.cfg"
+
+- name: Push portchannel configuration on the leaf & access switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/configure_portchannel/files/{{ inventory_hostname }}_po.cfg"

@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for layer2_ports
+- name: Creating vlans using Jinja2 template
+  template:
+    src: vlans.j2
+    dest: "/home/knzadmin/mylab/layer2_ports/files/{{ inventory_hostname }}_vlans.cfg"
+
+- name: Pushing the config to Switches
+  cisco.nxos.nxos_config:
+    src: "/home/knzadmin/mylab/layer2_ports/files/{{ inventory_hostname }}_vlans.cfg"

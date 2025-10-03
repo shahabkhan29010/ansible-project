@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_l3_interface
+- name: Generate scripts to configure L3 interface on DellEMC SoNIC Spine Switches
+  template:
+    src: dell_configure_l3_interface.j2
+    dest: "/home/knzadmin/mylab/dell_configure_l3_interface/files/{{ inventory_hostname}}_l3_interface.cfg"
+
+- name: Push configuration to configure L3 interface on DellEMC SoNIC Spine Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_l3_interface/files/{{ inventory_hostname}}_l3_interface.cfg"
+    save: yes

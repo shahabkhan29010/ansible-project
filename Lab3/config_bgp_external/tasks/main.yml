@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for config_bgp_external
+- name: Generate scripts to configure BGP on External Router
+  template:
+    src: config_bgp_external.j2
+    dest: "/home/knzadmin/mylab/config_bgp_external/files/{{ inventory_hostname }}_bgp.cfg"
+
+- name: Push BGP configuration script to External Router
+  cisco.ios.ios_config:
+    src: "/home/knzadmin/mylab/config_bgp_external/files/{{ inventory_hostname }}_bgp.cfg"

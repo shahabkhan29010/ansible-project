@@ -1,0 +1,7 @@
+{% for mclag in configure_mclag %}
+mclag domain {{ mclag.mclag_domain_id }}
+  source-ip {{ mclag.mclag_source_ip }}
+  session-vrf {{ mclag.mclag_session_vrf }}
+  peer-ip {{ mclag.mclag_peer_ip }}
+  peer-link {{ mclag.mclag_peer_link }}
+{% endfor %}

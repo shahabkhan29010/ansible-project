@@ -1,0 +1,13 @@
+{% for vrrp in configure_vrrp %}
+interface vlan {{ vrrp.vrrp_interface_id }}
+  no shutdown
+  ip address {{ vrrp.vrrp_interface_ip }}
+  vrrp {{ vrrp.vrrp_id }} address-family ipv4
+    priority {{ vrrp.vrrp_priority }}
+    vip {{ vrrp.vrrp_vip }}
+    version 2
+    {% if inventory_hostname == 'DC02-Spine01' %}
+    preempt
+    {% endif %}
+    exit
+{% endfor %}

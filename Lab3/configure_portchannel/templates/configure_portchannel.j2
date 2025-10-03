@@ -1,0 +1,22 @@
+{% if inventory_hostname in ['leaf01', 'leaf02', 'leaf03', 'leaf04']%}
+{% for portchannel in vpc_portchannel %}
+interface port-channel{{ portchannel.vpc_po_id}}
+  switchport mode trunk
+  vpc {{ portchannel.vpc_po_id }}
+  no shut
+interface {{ portchannel.vpc_interface }}
+  channel-group {{ portchannel.vpc_po_id }} force mode active
+  no shut
+{% endfor %}
+
+{% else %}
+{% for interface in portchannel %}
+interface port-channel{{ interface.po_id }}
+  switchport
+  switchport mode trunk
+  no shut
+interface {{ interface.po_interface }}
+  channel-group {{ interface.po_id }} force mode active
+  no shutdown
+{% endfor %}
+{% endif %}

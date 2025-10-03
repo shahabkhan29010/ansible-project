@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for dell_configure_mclag_heartbeat_interface
+- name: Generate scripts to configure keepalive interface for MCLAG Spine Switches
+  template:
+    src: dell_configure_mclag_heartbeat_interface.j2
+    dest: "/home/knzadmin/mylab/dell_configure_mclag_heartbeat_interface/files/{{ inventory_hostname }}_keepalive_interface.cfg"
+
+- name: Push configuration to configure keepalive interface for MCLAG on DellEMC Spine Switches
+  dellemc.enterprise_sonic.sonic_config:
+    src: "/home/knzadmin/mylab/dell_configure_mclag_heartbeat_interface/files/{{ inventory_hostname }}_keepalive_interface.cfg"
+    save: yes
