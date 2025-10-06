@@ -1,0 +1,11 @@
+# Ignore all log files
+.cfg
+.yml
+
+# Ignore a specific file
+secret-config.yaml
+
+# Ignore a folder and its contents
+/home/network-admin/mylab/lib
+/home/network-admin/mylab/lib64
+/home/network-admin/mylab/python_lab
