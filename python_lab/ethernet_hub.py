@@ -1,3 +1,0 @@
-boot_message = """\nPython Hub is booting up ...
-Please wait...\n"""
-print(boot_message)
