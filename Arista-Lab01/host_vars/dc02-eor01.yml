@@ -1,0 +1,71 @@
+configure_l3_interface:
+  - l3_interface_description: Connected to EOR02-Eth1
+    l3_interface_name: Ethernet1
+    l3_interface_ip: 1.1.1.1/30
+
+configure_svi:
+  - svi_vlan_id: 4094
+    svi_description: MLAG-Peer-interface
+    svi_ip: 1.1.1.253/30
+
+configure_mlag:
+  - mlag_domain_id: 100
+    mlag_local_interface: 4094
+    mlag_peer_link: Port-Channel100
+    mlag_peer_address: 1.1.1.254
+    mlag_heartbeat_peer_address: 1.1.1.2
+    mlag_peer_vrf: heartbeat
+
+configure_vrrp:
+  - vrrp_vlan_id: 210
+    vrrp_ip_address: 192.168.210.2/24
+    vrrp_id: 210
+    vrrp_vip: 192.168.210.1
+    vrrp_priority: 254
+  - vrrp_vlan_id: 220
+    vrrp_ip_address: 192.168.220.2/24
+    vrrp_id: 220
+    vrrp_vip: 192.168.220.1
+    vrrp_priority: 254
+
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 20.20.20.3/32
+
+configure_sub_interface:
+  - parent_interface: Ethernet11
+    sub_interface_id: Ethernet11.253
+    sub_interface_description: Connected to DC02-AGG01
+    sub_interface_ip: 192.168.253.2/30
+    sub_interface_vlan_id: 253
+  - parent_interface: Ethernet12
+    sub_interface_id: Ethernet12.253
+    sub_interface_description: Connected to DC02-AGG02
+    sub_interface_ip: 192.168.253.6/30
+    sub_interface_vlan_id: 253
+
+ospf_process_id: 1
+ospf_router_id: 20.20.20.3
+configure_ospf:
+  - ospf_interface_id: loopback0
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet11.253
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet12.253
+    ospf_area_id: 0.0.0.0
+
+bgp_as_number: 65202
+bgp_router_id: 20.20.20.3
+configure_bgp:
+  - bgp_neighbor: 20.20.20.1
+    bgp_neighbor_asn: 65201
+  - bgp_neighbor: 20.20.20.2
+    bgp_neighbor_asn: 65201
+  - bgp_neighbor: 20.20.20.4
+    bgp_neighbor_asn: 65202
+
+advertise_local_network:
+  - bgp_neighbor: 20.20.20.1
+    route_map: Advertise-Local-Network
+  - bgp_neighbor: 20.20.20.2
+    route_map: Advertise-Local-Network

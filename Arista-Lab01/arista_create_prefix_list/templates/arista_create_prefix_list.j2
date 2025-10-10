@@ -1,0 +1,3 @@
+{% for prefix in configure_prefix_list %}
+ip prefix-list Advertise-Local-Network seq {{ prefix.prefix_list_seq_number }} permit {{ prefix.prefix_list_network }}
+{% endfor %}

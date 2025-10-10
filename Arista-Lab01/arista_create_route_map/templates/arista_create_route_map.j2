@@ -1,0 +1,4 @@
+{% for routemap in configure_route_map %}
+route-map Advertise-Local-Network permit {{ routemap.route_map_seq_number }}
+  match ip address prefix-list {{ routemap.route_map_match_list }}
+{% endfor %}

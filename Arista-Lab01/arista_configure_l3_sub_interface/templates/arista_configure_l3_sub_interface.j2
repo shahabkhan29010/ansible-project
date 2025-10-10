@@ -1,0 +1,9 @@
+{% for interface in configure_sub_interface %}
+interface {{ interface.parent_interface }}
+  no switchport
+  no shutdown
+interface {{ interface.sub_interface_id }}
+  encapsulation dot1q vlan {{ interface.sub_interface_vlan_id }}
+  ip address {{ interface.sub_interface_ip }}
+  no shutdown
+{% endfor %}

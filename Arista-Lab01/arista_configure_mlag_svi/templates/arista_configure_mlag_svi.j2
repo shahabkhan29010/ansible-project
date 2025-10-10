@@ -1,0 +1,6 @@
+{% for svi in configure_svi %}
+interface vlan{{ svi.svi_vlan_id }}
+  description {{ svi.svi_description }}
+  ip address {{ svi.svi_ip }}
+  no shutdown
+{% endfor %}

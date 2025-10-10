@@ -1,0 +1,5 @@
+{% for loopback in configure_loopback %}
+interface loopback{{ loopback.loopback_id }}
+  ip address {{ loopback.loopback_ip }}
+  no shutdown
+{% endfor %}

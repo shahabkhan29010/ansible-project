@@ -1,0 +1,5 @@
+router bgp {{ bgp_as_number }}
+  address-family ipv4
+  {% for network in advertise_local_network %}
+    redistribute connected route-map {{ network.route_map }}
+  {% endfor %}

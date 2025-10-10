@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_mlag_svi
+- name: Generate scripts to configure SVI in Arista EOR Switches for MLAG
+  template:
+    src: arista_configure_mlag_svi.j2
+    dest: "/home/network-admin/mylab/arista_configure_mlag_svi/files/{{ inventory_hostname }}_mlag_svi.cfg"
+
+- name: Push configuration to configure SVI in Arista EOR Switches for MLAG
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_configure_mlag_svi/files/{{ inventory_hostname }}_mlag_svi.cfg"
+    save_when: modified

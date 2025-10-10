@@ -1,0 +1,16 @@
+configure_vlans:
+  - vlan_id: 110
+    vlan_name: VLAN110
+  - vlan_id: 120
+    vlan_name: VLAN120
+
+configure_access_port:
+  - access_port_name: Ethernet11
+    access_vlan_id: 110
+  - access_port_name: Ethernet12
+    access_vlan_id: 120
+
+portchannel_id: 10
+configure_portchannel:
+  - Ethernet1
+  - Ethernet2

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_mlag_portchannel
+- name: Generate scripts to configure MLAG Port-Channel in Arista EOR Switches
+  template:
+    src: arista_configure_mlag_portchannel.j2
+    dest: "/home/network-admin/mylab/arista_configure_mlag_portchannel/files/{{ inventory_hostname }}_portchannel.cfg"
+
+- name: Push configuration to configure MLAG Port-Channel in Arista EOR Switches
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_configure_mlag_portchannel/files/{{ inventory_hostname }}_portchannel.cfg"
+    save_when: modified

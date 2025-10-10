@@ -1,0 +1,79 @@
+- name: Configure VLANs in Arista TOR & EOR Switches
+  hosts: dc01_eor, dc02_eor, dc01_racks, dc02_racks
+  roles:
+    - arista_configure_vlans
+
+- name: Configure access ports in Arista TOR Switches
+  hosts: dc01_racks, dc02_racks
+  roles:
+    - arista_configure_access_port
+
+- name: Configure VRF in Arista EOR Switches
+  hosts: dc01_eor, dc02_eor
+  roles:
+    - arista_configure_vrf
+
+- name: Configure L3 interface in Arista EOR Switches
+  hosts: dc01-eor01, dc01-eor02, dc02-eor01, dc02-eor02, dc01-agg01, dc01-agg02, dc02-agg01, dc02-agg02, router
+  roles:
+    - arista_configure_l3_interface
+
+- name: Configure Port-Channel in Arista TOR & EOR Switches for MLAG
+  hosts: dc01_eor, dc02_eor, dc01_racks, dc02_racks
+  roles:
+    - arista_configure_portchannel
+
+- name: Configure SVI in Arista EOR Switches for MLAG
+  hosts: dc01_eor, dc02_eor
+  roles:
+    - arista_configure_mlag_svi
+
+- name: Configure MLAG in Arista EOR Switches
+  hosts: dc01_eor, dc02_eor
+  roles:
+    - arista_configure_mlag
+
+- name: Configure MLAG PortChannel in Arista EOR Switches
+  hosts: dc01_eor, dc02_eor
+  roles:
+    - arista_configure_mlag_portchannel
+
+- name: Configure VRRP in Arista EOR Switches
+  hosts: dc01_eor, dc02_eor
+  roles:
+    - arista_configure_vrrp
+
+- name: Configure Loopback in Arista Switches
+  hosts: dc01_eor, dc02_eor, dc01_agg, dc02_agg, router
+  roles:
+    - arista_configure_loopback
+
+- name: Configure L3 sub-interface in Arista Switches
+  hosts: dc01_eor, dc02_eor, dc01_agg, dc02_agg
+  roles:
+    - arista_configure_l3_sub_interface
+
+- name: Configure OSPF in Arista Switches
+  hosts: dc01_eor, dc02_eor, dc01_agg, dc02_agg, router
+  roles:
+    - arista_configure_ospf
+
+- name: Configure BGP in Arista Switches
+  hosts: dc01_eor, dc02_eor, dc01_agg, dc02_agg, router
+  roles:
+    - arista_configure_bgp
+
+- name: Configure Prefix-list in Arista Switches
+  hosts: dc01_eor, dc02_eor, router
+  roles:
+    - arista_create_prefix_list
+
+- name: Configure Route-map in Arista Switches
+  hosts: dc01_eor, dc02_eor, router
+  roles:
+    - arista_create_route_map
+
+- name: Advertise Local Networks in Arista Switches
+  hosts: dc01_eor, dc02_eor, router
+  roles:
+    - arista_advertise_local_network

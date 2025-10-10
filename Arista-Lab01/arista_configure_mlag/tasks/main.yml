@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_mlag
+- name: Generate scripts to configure MLAG in Arista EOR Switches
+  template:
+    src: arista_configure_mlag.j2
+    dest: "/home/network-admin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
+
+- name: Push configuration to configure MLAG in Arista EOR Switches
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_configure_mlag/files/{{ inventory_hostname }}_mlag.cfg"
+    save_when: modified

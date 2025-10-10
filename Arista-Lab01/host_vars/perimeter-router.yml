@@ -1,0 +1,67 @@
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 1.1.1.1/32
+  - loopback_id: 4
+    loopback_ip: 4.4.2.2/32
+  - loopback_id: 8
+    loopback_ip: 8.8.8.8/32
+
+configure_l3_interface:
+  - l3_interface_name: Ethernet1
+    l3_interface_description: Connected to DC01-AGG01
+    l3_interface_ip: 11.11.11.1/30
+  - l3_interface_name: Ethernet2
+    l3_interface_description: Connected to DC01-AGG02
+    l3_interface_ip: 12.12.12.1/30
+  - l3_interface_name: Ethernet3
+    l3_interface_description: Connected to DC02-AGG01
+    l3_interface_ip: 13.13.13.1/30
+  - l3_interface_name: Ethernet4
+    l3_interface_description: Connected to DC02-AGG02
+    l3_interface_ip: 14.14.14.1/30
+
+ospf_process_id: 1
+ospf_router_id: 1.1.1.1
+configure_ospf:
+  - ospf_interface_id: loopback0
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet1
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet2
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet3
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet4
+    ospf_area_id: 0.0.0.0
+
+bgp_as_number: 100
+bgp_router_id: 1.1.1.1
+configure_bgp:
+  - bgp_neighbor: 10.10.10.1
+    bgp_neighbor_asn: 65101
+  - bgp_neighbor: 10.10.10.2
+    bgp_neighbor_asn: 65101
+  - bgp_neighbor: 20.20.20.1
+    bgp_neighbor_asn: 65201
+  - bgp_neighbor: 20.20.20.2
+    bgp_neighbor_asn: 65201
+
+configure_prefix_list:
+  - prefix_list_seq_number: 10
+    prefix_list_network: 4.4.2.2/32
+  - prefix_list_seq_number: 20
+    prefix_list_network: 8.8.8.8/32
+
+configure_route_map:
+  - route_map_seq_number: 10
+    route_map_match_list: Advertise-Local-Network
+
+advertise_local_network:
+  - bgp_neighbor: 10.10.10.1
+    route_map: Advertise-Local-Network
+  - bgp_neighbor: 10.10.10.2
+    route_map: Advertise-Local-Network
+  - bgp_neighbor: 20.20.20.1
+    route_map: Advertise-Local-Network
+  - bgp_neighbor: 20.20.20.2
+    route_map: Advertise-Local-Network

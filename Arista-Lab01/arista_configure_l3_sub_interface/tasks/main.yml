@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_configure_l3_sub_interface
+- name: Generate scripts to configure sub-interface between Arista EOR & AGG Switches
+  template:
+    src: arista_configure_l3_sub_interface.j2
+    dest: "/home/network-admin/mylab/arista_configure_l3_sub_interface/files/{{ inventory_hostname }}_sub_interface.cfg"
+
+- name: Push configuration to configure sub-interface between Arista EOR & AGG Switches
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_configure_l3_sub_interface/files/{{ inventory_hostname }}_sub_interface.cfg"
+    save_when: modified

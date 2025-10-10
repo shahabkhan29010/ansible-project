@@ -1,0 +1,6 @@
+{% for vrf in configure_vrf %}
+vrf instance {{ vrf.vrf_name }}
+interface {{ vrf.vrf_interface }}
+  no switchport
+  vrf {{ vrf.vrf_name }}
+{% endfor %}

@@ -1,0 +1,10 @@
+{% for port in configure_mlag_portchannel %}
+interface Port-Channel{{ port.mlag_portchannel_id }}
+  switchport mode trunk
+  mlag {{ port.mlag_id }}
+  no shutdown
+
+interface {{ port.mlag_portchannel_member }}
+  channel-group {{ port.mlag_portchannel_id }} mode active
+  no shutdown
+{% endfor %}

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_create_prefix_list
+- name: Generate scripts to configure Prefix-list in Arista Switches
+  template:
+    src: arista_create_prefix_list.j2
+    dest: "/home/network-admin/mylab/arista_create_prefix_list/files/{{ inventory_hostname }}_prefix_list.cfg"
+
+- name: Push configuration to configure Prefix-list in Arista Switches
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_create_prefix_list/files/{{ inventory_hostname }}_prefix_list.cfg"
+    save_when: modified

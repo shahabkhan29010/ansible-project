@@ -1,0 +1,9 @@
+interface Port-Channel {{ portchannel_id }}
+  switchport mode trunk
+  no shutdown
+
+{% for port in configure_portchannel %}
+interface {{ port }}
+  channel-group {{ portchannel_id }} mode active
+  no shutdown
+{% endfor %}

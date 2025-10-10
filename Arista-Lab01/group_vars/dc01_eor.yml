@@ -1,0 +1,32 @@
+configure_vlans:
+  - vlan_id: 110
+    vlan_name: VLAN110
+  - vlan_id: 120
+    vlan_name: VLAN120
+  - vlan_id: 4094
+    vlan_name: MLAG-Local-Interface
+
+configure_vrf:
+  - vrf_name: heartbeat
+    vrf_interface: Ethernet1
+
+portchannel_id: 100
+configure_portchannel:
+  - Ethernet2
+  - Ethernet3
+
+configure_mlag_portchannel:
+  - mlag_portchannel_id: 10
+    mlag_portchannel_member: Ethernet4
+    mlag_id: 10
+
+configure_prefix_list:
+  - prefix_list_seq_number: 10
+    prefix_list_network: 192.168.110.0/24
+  - prefix_list_seq_number: 20
+    prefix_list_network: 192.168.120.0/24
+
+configure_route_map:
+  - route_map_seq_number: 10
+    route_map_match_list: Advertise-Local-Network
+

@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for arista_advertise_local_network
+- name: Generate scripts to Advertise Local Networks in BGP in Arista Switches
+  template:
+    src: arista_advertise_local_network.j2
+    dest: "/home/network-admin/mylab/arista_advertise_local_network/files/{{ inventory_hostname }}_local_network.cfg"
+
+- name: Push configuration to Advertise Local Networks in BGP in Arista Switches
+  arista.eos.eos_config:
+    src: "/home/network-admin/mylab/arista_advertise_local_network/files/{{ inventory_hostname }}_local_network.cfg"
+    save_when: modified

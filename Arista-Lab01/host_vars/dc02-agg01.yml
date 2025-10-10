@@ -1,0 +1,45 @@
+configure_loopback:
+  - loopback_id: 0
+    loopback_ip: 20.20.20.1/32
+
+configure_sub_interface:
+  - parent_interface: Ethernet11
+    sub_interface_id: Ethernet11.253
+    sub_interface_description: Connected to DC02-EOR01
+    sub_interface_ip: 192.168.253.1/30
+    sub_interface_vlan_id: 253
+  - parent_interface: Ethernet12
+    sub_interface_id: Ethernet12.253
+    sub_interface_description: Connected to DC02-EOR02
+    sub_interface_ip: 192.168.253.9/30
+    sub_interface_vlan_id: 253
+
+configure_l3_interface:
+  - l3_interface_name: Ethernet4
+    l3_interface_description: Connected to Perimeter-Router
+    l3_interface_ip: 13.13.13.2/30
+
+ospf_process_id: 1
+ospf_router_id: 20.20.20.1
+configure_ospf:
+  - ospf_interface_id: loopback0
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet4
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet11.253
+    ospf_area_id: 0.0.0.0
+  - ospf_interface_id: Ethernet12.253
+    ospf_area_id: 0.0.0.0
+
+bgp_as_number: 65201
+bgp_router_id: 20.20.20.1
+configure_bgp:
+  - bgp_neighbor: 1.1.1.1
+    bgp_neighbor_asn: 100
+  - bgp_neighbor: 20.20.20.2
+    bgp_neighbor_asn: 65201
+  - bgp_neighbor: 20.20.20.3
+    bgp_neighbor_asn: 65202
+  - bgp_neighbor: 20.20.20.4
+    bgp_neighbor_asn: 65202
+
